@@ -1,7 +1,10 @@
 import java.util.Scanner;
 
 /**
- * Created by Robert on 2/24/17.
+ * @author: Robert
+ * @version: 2/24/17
+ * @assign.ment: Create Classes
+ * @descrip.tion: This program creates a Fire Alarm class. A fire alarm has multiple states and behaviors that can be gotten or changed(mutated).
  */
 public class FireAlarm {
 	boolean hasPower;
@@ -13,7 +16,7 @@ public class FireAlarm {
 		hasPower = false;
 		isRinging = false;
 		isFlashing = false;
-		String color;
+		String color = "red";
 	}
 //getters
 	public boolean getHasPower(){return hasPower;}
@@ -27,12 +30,7 @@ public class FireAlarm {
 			isRinging = isFire;
 			isFlashing = isFire;
 		}
-		if (isFire && !hasPower){
-			System.out.println("No Power Present");
-		}
-		if (!isFire){
-			System.out.println("No fire present");
-		}
+
 	}
 	public void setPower(boolean newPower){
 		hasPower = newPower;
@@ -65,10 +63,18 @@ public class FireAlarm {
 		System.out.println("Is there fire? Y or N.");
 		hasFire = scanner.nextLine();
 		boolean bothOn = fA2.getHasPower() && fA1.getHasPower();
+        boolean oneOn = fA1.getHasPower() ^ fA2.getHasPower();
 		if (hasFire.equals("Y") && bothOn){
 			fA2.setFire(true);
 			fA1.setFire(true);
 			System.out.println("Both fire alarms are flashing:"+ fA1.getFlashing()+ ". Also, both are ringing:"+fA2.getRinging());
+        }
+        if (hasFire.equals("Y") && oneOn){
+            System.out.println("Only one fire alarm is on!");
+            System.out.println("Things are burning!");
+        }
+		if (hasFire.equals("N")){
+			System.out.println("Everything is A-Okay");
 		}
 
 
